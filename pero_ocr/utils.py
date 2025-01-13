@@ -4,17 +4,16 @@ import logging
 import subprocess
 
 try:
-    subprocess.check_output(
-        '{} -c "import numba"'.format(sys.executable), shell=True
-    )
-    logging.info('numba available, importing jit')
     from numba import jit
+
+    logging.info("numba available, importing jit")
 except Exception:
-    logging.warning('cannot import numba, creating dummy jit definition')
+    logging.warning("cannot import numba, creating dummy jit definition")
 
     def jit(function):
         def wrapper(*args, **kwargs):
             return function(*args, **kwargs)
+
         return wrapper
 
 
