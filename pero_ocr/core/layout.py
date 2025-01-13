@@ -270,7 +270,7 @@ class PageLayout(object):
                                 new_textline.heights = json.loads(word.split(":")[1])
                     else:
                         if re.findall("heights", line.attrib['custom']):
-                            heights = re.findall("\d+", line.attrib['custom'])
+                            heights = re.findall(r"\d+", line.attrib['custom'])
                             heights_array = np.asarray([float(x) for x in heights])
                             if heights_array.shape[0] == 4:
                                 heights = np.zeros(2, dtype=np.float32)
