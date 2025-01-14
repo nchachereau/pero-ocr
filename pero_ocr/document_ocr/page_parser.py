@@ -1,7 +1,6 @@
 import numpy as np
 
 import logging
-from multiprocessing import Pool
 import math
 import time
 
@@ -224,7 +223,6 @@ class LayoutExtractor(object):
             smooth_line_predictions=config.getboolean('SMOOTH_LINE_PREDICTIONS', fallback=True),
             paragraph_line_threshold=config.getfloat('PARAGRAPH_LINE_THRESHOLD', fallback=0.3),
         )
-        self.pool = Pool(1)
 
     def process_page(self, img, page_layout: PageLayout):
         if self.detect_regions or self.detect_lines:
