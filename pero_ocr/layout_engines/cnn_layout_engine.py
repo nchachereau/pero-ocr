@@ -108,7 +108,7 @@ class LayoutEngine(object):
 
         tic = time.time()
         maps, ds = self.parsenet.get_maps_with_optimal_resolution(image)
-        print(f'GET MAPS TIME: {time.time() - tic}')
+        # print(f'GET MAPS TIME: {time.time() - tic}')
 
         b_list, h_list, t_list = self.parse(maps, ds)
 
@@ -134,7 +134,7 @@ class LayoutEngine(object):
         b_list = []
         h_list = []
 
-        print('MAP RES:', out_map.shape)
+        # print('MAP RES:', out_map.shape)
         out_map[:, :, 4][out_map[:, :, 4] < 0] = 0
 
         # expand line heights verticaly

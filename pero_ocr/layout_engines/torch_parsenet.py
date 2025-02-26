@@ -47,7 +47,7 @@ class TorchParseNet(Net):
         test_img_canvas[0, :img.shape[0], :img.shape[1], :] = img
 
         with torch.no_grad():
-            print(f'NET INPUT {new_shape_x * new_shape_y} Mpx.')
+            # print(f'NET INPUT {new_shape_x * new_shape_y} Mpx.')
             test_img_canvas = torch.from_numpy(test_img_canvas).to(self.device).float().permute(0, 3, 1, 2) * (1/255.)
             out_map, _ = self.net(test_img_canvas)
             out_map = out_map.permute(0, 2, 3, 1).cpu().numpy()
