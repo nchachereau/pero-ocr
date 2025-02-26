@@ -152,7 +152,12 @@ def get_circumradius(a, b, c):
     Compute circumradius of a triangle
     '''
     s = (a + b + c) / 2.0
-    areas = (s*(s-a)*(s-b)*(s-c)) ** 0.5
+    # Sometimes the number under the square root can be negative, probably
+    # because of rounding / impossibility of representing float numbers
+    # perfectly accurately. We get
+    #   RuntimeWarning: invalid value encountered in sqrt
+    # To avoid this, we constrain these (very small) negative numbers to 0.
+    areas = np.maximum((s*(s-a)*(s-b)*(s-c)), 0.0) ** 0.5
     circums = a * b * c / (4.0 * (areas + 0.0001))
     return circums
 
